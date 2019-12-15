@@ -11,12 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
 import com.mlykotom.connectingthedots.R
 import com.mlykotom.connectingthedots.appComponent
 import com.mlykotom.connectingthedots.di.InjectingSavedStateViewModelFactory
 import com.mlykotom.connectingthedots.di.ViewModelAssistedFactory
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -24,8 +24,15 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var abstractViewModelFactory: InjectingSavedStateViewModelFactory
 
+    lateinit var manualViewModel: SomeViewModel
     lateinit var viewModel: MainViewModel
     lateinit var otherViewModel: OtherViewModel
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    @Inject
+    lateinit var context: Context
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent.inject(this)
@@ -33,6 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         val factory = abstractViewModelFactory.create(this)
 
+        // manual ViewModel
+        val manualFactory = SomeViewModel.Factory(sharedPreferences, context, "some article id")
+        manualViewModel = ViewModelProvider(this, manualFactory)[SomeViewModel::class.java]
         // dagger ViewModel
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
         // assisted ViewModel
@@ -50,6 +60,28 @@ class MainActivity : AppCompatActivity() {
             otherViewModel.onPlusClick()
         }
     }
+}
+
+class SomeViewModel(
+    private val sharedPreferences: SharedPreferences,
+    private val appContext: Context,
+    private val articleId: String
+) : ViewModel() {
+
+    class Factory constructor(
+        private val sharedPreferences: SharedPreferences,
+        private val appContext: Context,
+        private val articleId: String
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return SomeViewModel(
+                sharedPreferences,
+                appContext,
+                articleId
+            ) as T
+        }
+    }
+
 }
 
 class MainViewModel @Inject constructor(
