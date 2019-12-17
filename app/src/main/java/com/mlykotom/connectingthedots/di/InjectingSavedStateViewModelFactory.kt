@@ -9,13 +9,9 @@ import dagger.Reusable
 import javax.inject.Inject
 import javax.inject.Provider
 
-interface ViewModelAssistedFactory<T : ViewModel> {
-    fun create(savedStateHandle: SavedStateHandle): T
-}
-
 @Reusable
 class InjectingSavedStateViewModelFactory @Inject constructor(
-    private val assistedFactories: Map<Class<out ViewModel>, @JvmSuppressWildcards ViewModelAssistedFactory<out ViewModel>>,
+    private val assistedFactories: Map<Class<out ViewModel>, @JvmSuppressWildcards ViewModelSavedStateFactory<out ViewModel>>,
     private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) {
     /**

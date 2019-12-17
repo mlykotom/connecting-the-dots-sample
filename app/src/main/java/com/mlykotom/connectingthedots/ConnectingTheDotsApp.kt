@@ -19,6 +19,5 @@ class ConnectingTheDotsApp : Application() {
     }
 }
 
-
 val Activity.appComponent get() = (application as ConnectingTheDotsApp).appComponent
 val Fragment.appComponent get() = (requireActivity().application as ConnectingTheDotsApp).appComponent

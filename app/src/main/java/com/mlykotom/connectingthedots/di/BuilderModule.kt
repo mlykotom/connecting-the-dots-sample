@@ -1,9 +1,9 @@
 package com.mlykotom.connectingthedots.di
 
 import androidx.lifecycle.ViewModel
-import com.squareup.inject.assisted.dagger2.AssistedModule
 import com.mlykotom.connectingthedots.presentation.MainViewModel
 import com.mlykotom.connectingthedots.presentation.OtherViewModel
+import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,5 +19,5 @@ abstract class BuilderModule {
     @Binds
     @IntoMap
     @ViewModelKey(OtherViewModel::class)
-    abstract fun bindsOtherViewModel(f: OtherViewModel.Factory): ViewModelAssistedFactory<out ViewModel>
+    abstract fun bindsOtherViewModel(f: OtherViewModel.Factory): ViewModelSavedStateFactory<out ViewModel>
 }
