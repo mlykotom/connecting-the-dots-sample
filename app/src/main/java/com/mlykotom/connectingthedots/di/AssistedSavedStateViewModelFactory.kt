@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModel
  *
  * ```
  * @AssistedInject.Factory
- * interface Factory: ViewModelSavedStateFactory<SomeViewModel>
+ * interface Factory: AssistedSavedStateViewModelFactory<SomeViewModel>
  * ```
  */
-interface ViewModelSavedStateFactory<T : ViewModel> {
+interface AssistedSavedStateViewModelFactory<T : ViewModel> {
     fun create(savedStateHandle: SavedStateHandle): T
 }
 

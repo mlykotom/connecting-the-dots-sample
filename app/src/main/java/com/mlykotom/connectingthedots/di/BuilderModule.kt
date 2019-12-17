@@ -19,5 +19,5 @@ abstract class BuilderModule {
     @Binds
     @IntoMap
     @ViewModelKey(OtherViewModel::class)
-    abstract fun bindsOtherViewModel(f: OtherViewModel.Factory): ViewModelSavedStateFactory<out ViewModel>
+    abstract fun bindsOtherViewModel(f: OtherViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
 }

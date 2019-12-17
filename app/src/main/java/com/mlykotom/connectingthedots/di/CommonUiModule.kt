@@ -10,5 +10,5 @@ abstract class CommonUiModule {
     abstract fun viewModels(): Map<Class<out ViewModel>, @JvmSuppressWildcards ViewModel>
 
     @Multibinds
-    abstract fun assistedViewModels(): Map<Class<out ViewModel>, @JvmSuppressWildcards ViewModelSavedStateFactory<out ViewModel>>
+    abstract fun assistedViewModels(): Map<Class<out ViewModel>, @JvmSuppressWildcards AssistedSavedStateViewModelFactory<out ViewModel>>
 }

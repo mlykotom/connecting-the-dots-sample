@@ -23,7 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
 
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -42,9 +48,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc03"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc03"
 
-    implementation "com.google.dagger:dagger:2.25.2"
-    kapt "com.google.dagger:dagger-compiler:2.25.2"
-    kapt "com.google.dagger:dagger-android-processor:2.25.2"
+    implementation "androidx.fragment:fragment-ktx:1.2.0-rc03"
+
+    implementation "com.google.dagger:dagger:2.25.3"
+    kapt "com.google.dagger:dagger-compiler:2.25.3"
+    kapt "com.google.dagger:dagger-android-processor:2.25.3"
 
     compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2"
     kapt "com.squareup.inject:assisted-inject-processor-dagger2:0.5.2"
