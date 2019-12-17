@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.mlykotom.connectingthedots.ConnectingTheDotsApp
 import com.mlykotom.connectingthedots.presentation.MainActivity
+import com.mlykotom.connectingthedots.presentation.SomeFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -30,5 +31,6 @@ interface AppComponent {
 
     fun inject(connectingTheDotsApp: ConnectingTheDotsApp)
     fun inject(connectingTheDotsApp: MainActivity)
+    fun inject(someFragment: SomeFragment)
 }
 
