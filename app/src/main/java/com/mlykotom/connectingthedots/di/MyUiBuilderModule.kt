@@ -9,9 +9,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
+/**
+ * For usage with AssistedInject
+ * 1. annotate your Dagger module (which has ViewModel bindings) with @AssistedModule.
+ * 2. include "AssistedInject_YourNameOfModule::class" which is generated automatically
+ */
 @AssistedModule
-@Module(includes = [AssistedInject_BuilderModule::class])
-abstract class BuilderModule {
+@Module(includes = [AssistedInject_MyUiBuilderModule::class])
+abstract class MyUiBuilderModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainViewModel::class)

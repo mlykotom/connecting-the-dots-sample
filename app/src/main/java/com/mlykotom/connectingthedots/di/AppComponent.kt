@@ -13,7 +13,7 @@ import dagger.Component
     modules = [
         AppCommonModule::class,
         CommonUiModule::class,
-        BuilderModule::class
+        MyUiBuilderModule::class
     ]
 )
 interface AppComponent {
