@@ -25,9 +25,9 @@ interface AppComponent {
         ): AppComponent
     }
 
-    fun context(): Context
-    fun application(): Application
-    fun sharedPrefs(): SharedPreferences
+    val context: Context
+    val application: Application
+    val sharedPrefs: SharedPreferences
 
     fun inject(connectingTheDotsApp: ConnectingTheDotsApp)
     fun inject(connectingTheDotsApp: MainActivity)
