@@ -7,8 +7,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.mlykotom.connectingthedots.R
 import com.mlykotom.connectingthedots.di.AssistedSavedStateViewModelFactory
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 
 /**
  * ViewModel with usage of @AssistedInject
@@ -18,7 +19,7 @@ class OtherViewModel @AssistedInject constructor(
     private val appContext: Context,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    @AssistedInject.Factory
+    @AssistedFactory
     interface Factory : AssistedSavedStateViewModelFactory<OtherViewModel>
 
     val counter = savedStateHandle.getLiveData("counter", 0)

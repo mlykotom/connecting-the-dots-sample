@@ -9,8 +9,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.mlykotom.connectingthedots.appComponent
 import com.mlykotom.connectingthedots.di.AssistedSavedStateViewModelFactory
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 
 /**
  * Just simple example (without UI) to show, how you can use the SavedStateHandle from base class.
@@ -38,8 +39,10 @@ class SomeViewModel @AssistedInject constructor(
     private val sharedPreferences: SharedPreferences,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    @AssistedInject.Factory
-    interface Factory : AssistedSavedStateViewModelFactory<SomeViewModel>
+    @AssistedFactory
+    interface Factory : AssistedSavedStateViewModelFactory<SomeViewModel> {
+        override fun create(savedStateHandle: SavedStateHandle): SomeViewModel
+    }
 
     val some = savedStateHandle.getLiveData("some", 0)
 
