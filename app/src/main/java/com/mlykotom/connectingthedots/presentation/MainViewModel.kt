@@ -23,4 +23,8 @@ class MainViewModel @Inject constructor(
         )
         sharedPreferences.getBoolean("hello world", false)
     }
+
+    fun iExist() {
+        Log.d("MainViewModel", "Called iExist just to show this viewmodel is properly injected")
+    }
 }
